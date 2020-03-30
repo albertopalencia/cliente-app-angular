@@ -1,3 +1,4 @@
+import { Region } from './region';
 import { Injectable } from '@angular/core';
 //import { DatePipe, formatDate } from '@angular/common';
 import { Cliente } from './cliente';
@@ -16,26 +17,19 @@ export class ClienteService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  getRegiones(): Observable<Region[]> {
+    return this.http.get<Region[]>(this.urlEndPoint + '/regiones');
+  }
+
   getClientes(page: number): Observable<any> {
-    return this.http.get(this.urlEndPoint + '/page/' + page).pipe(
-      tap((response: any) => {
-        console.log('ClienteService: tap 1');
-        (response.content as Cliente[]).forEach(cliente => console.log(cliente.nombre));
-      }),
+    return this.http.get(this.urlEndPoint + '/page/' + page).pipe(    
       map((response: any) => {
         (response.content as Cliente[]).map(cliente => {
-          cliente.nombre = cliente.nombre.toUpperCase();
-          //let datePipe = new DatePipe('es');
-          //cliente.createAt = datePipe.transform(cliente.createAt, 'EEEE dd, MMMM yyyy');
-          //cliente.createAt = formatDate(cliente.createAt, 'dd-MM-yyyy', 'es');
+          cliente.nombre = cliente.nombre.toUpperCase();         
           return cliente;
         });
         return response;
-      }),
-      tap(response => {
-        console.log('ClienteService: tap 2');
-        (response.content as Cliente[]).forEach(cliente => console.log(cliente.nombre));
-      })
+      })     
     );
   }
 
@@ -48,8 +42,6 @@ export class ClienteService {
           if (e.status == 400) {
             return throwError(e);
           }
-
-          console.error(e.error.mensaje);
           swal(e.error.mensaje, e.error.error, 'error');
           return throwError(e);
         })
@@ -59,8 +51,7 @@ export class ClienteService {
   getCliente(id): Observable<Cliente> {
     return this.http.get<Cliente>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
-        this.router.navigate(['/clientes']);
-        console.error(e.error.mensaje);
+        this.router.navigate(['/clientes']);      
         swal('Error al editar', e.error.mensaje, 'error');
         return throwError(e);
       })
