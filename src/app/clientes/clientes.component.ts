@@ -4,6 +4,7 @@ import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-clientes',
@@ -14,6 +15,7 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[];
   paginador: any;
   clienteSeleccionado: Cliente;
+  rutaServicio: string  = environment.urlServicePort;
 
   constructor(private clienteService: ClienteService,
     private activatedRoute: ActivatedRoute, private modalService : ModalService) { }
