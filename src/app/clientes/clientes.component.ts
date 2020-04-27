@@ -15,7 +15,7 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[];
   paginador: any;
   clienteSeleccionado: Cliente;
-  rutaServicio: string  = environment.urlServicePort;
+  rutaServicio: string  = environment.urlService;
 
   constructor(private clienteService: ClienteService,
     private activatedRoute: ActivatedRoute, private modalService : ModalService) { }

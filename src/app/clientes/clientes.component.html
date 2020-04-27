@@ -28,7 +28,7 @@
         <tbody>
           <tr *ngFor="let cliente of clientes">
             <td>
-              <img src= "{{rutaServicio}}uploads/img/{{cliente.foto}}" *ngIf="cliente?.foto"
+              <img src= "{{rutaServicio}}api/uploads/img/{{cliente.foto}}" *ngIf="cliente?.foto"
                 (click)="abrirModal(cliente)" alt="{{cliente.foto}}" class="img-thumbnail rounded"
                 style="cursor: pointer; width: 64px;">
 

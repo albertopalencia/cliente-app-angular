@@ -28,6 +28,7 @@ export class FormComponent implements OnInit {
       let id = +params.get('id');
       if (id) {
         this.clienteService.getCliente(id).subscribe((cliente) => this.cliente = cliente);
+        this.titulo = 'Editar Cliente';
       }
     });
 
@@ -46,6 +47,8 @@ export class FormComponent implements OnInit {
           console.error(err.error.errors);
         }
       );
+
+      this.titulo = 'Crear Cliente';
   }
 
   update(): void {
@@ -61,6 +64,11 @@ export class FormComponent implements OnInit {
         }
       )
   }
+
+  regresar():void {
+ this.router.navigate(['/clientes']);
+  }
+
 
   compararRegion(regionCliente: Region, regionAsignado: Region) {
     return (regionCliente === null || regionCliente === undefined) || (regionAsignado === null || regionAsignado === undefined) ? false :
