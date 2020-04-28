@@ -5,7 +5,9 @@
   <div class="card-body">
     <h5 class="card-title">Listado de clientes</h5>
     <div class="my-2 text-left">
-      <button class="btn btn-sm btn-success" type="button" [routerLink]="['/clientes/form']" title="Adicionar">
+      <button *ngIf="autService.tieneRole('ROLE_ADMIN')" 
+       class="btn btn-sm btn-success" type="button" 
+       [routerLink]="['/clientes/form']" title="Adicionar">
         <i class="fa fa-plus"></i>
       </button>
     </div>
@@ -16,18 +18,18 @@
       <table class="table">
         <thead>
           <tr>
-            <th>imagen</th>
+            <th *ngIf="autService.tieneRole('ROLE_USER')" >imagen</th>
             <th>nombre</th>
             <th>apellido</th>
             <th>email</th>
             <th>fecha</th>
-            <th>editar</th>
-            <th>eliminar</th>
+            <th *ngIf="autService.tieneRole('ROLE_ADMIN')" >editar</th>
+            <th *ngIf="autService.tieneRole('ROLE_ADMIN')" >eliminar</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let cliente of clientes">
-            <td>
+            <td *ngIf="autService.tieneRole('ROLE_USER')">
               <img src= "{{rutaServicio}}api/uploads/img/{{cliente.foto}}" *ngIf="cliente?.foto"
                 (click)="abrirModal(cliente)" alt="{{cliente.foto}}" class="img-thumbnail rounded"
                 style="cursor: pointer; width: 64px;">
@@ -40,13 +42,13 @@
             <td>{{ cliente.apellido | uppercase }}</td>
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.createAt | date:"EEEE dd, MMMM yyyy"}}</td>
-            <td>
+            <td *ngIf="autService.tieneRole('ROLE_ADMIN')" >
               <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]" title="editar"
                 class="btn btn-primary btn-sm">
                 <i class="fa fa-pencil fa-fw"></i>
               </button>
             </td>
-            <td>
+            <td *ngIf="autService.tieneRole('ROLE_ADMIN')" >
               <button type="button" name="eliminar" (click)='delete(cliente)' class="btn btn-danger btn-sm"
                 title="eliminar">
                 <i class="fa fa-trash-o"></i>

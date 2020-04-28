@@ -5,6 +5,8 @@ import { ClienteService } from '../cliente.service';
 
 import swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
+import { AuthService } from '../../usuarios/auth.service';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'detalle-cliente',
   templateUrl: './detalle.component.html',
@@ -16,15 +18,16 @@ export class DetalleComponent implements OnInit {
   titulo: string = "Detalle del cliente";
   private fotoSeleccionada: File;
   progreso: number = 0;
+  urlFoto: string = environment.urlService;
 
-  constructor(private clienteService: ClienteService, private modalService: ModalService) { }
+  constructor(private clienteService: ClienteService, private modalService: ModalService,
+    private authService: AuthService) { }
 
   ngOnInit() { }
 
   seleccionarFoto(event) {
     this.fotoSeleccionada = event.target.files[0];
-    this.progreso = 0;
-    console.log(this.fotoSeleccionada);
+    this.progreso = 0;    
     if (this.fotoSeleccionada.type.indexOf('image') < 0) {
       swal('Error seleccionar imagen: ', 'El archivo debe ser del tipo imagen', 'error');
       this.fotoSeleccionada = null;

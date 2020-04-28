@@ -5,6 +5,7 @@ import { ClienteService } from './cliente.service';
 import swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment.prod';
+import { AuthService } from '../usuarios/auth.service';
 
 @Component({
   selector: 'app-clientes',
@@ -18,7 +19,8 @@ export class ClientesComponent implements OnInit {
   rutaServicio: string  = environment.urlService;
 
   constructor(private clienteService: ClienteService,
-    private activatedRoute: ActivatedRoute, private modalService : ModalService) { }
+    private activatedRoute: ActivatedRoute, private modalService : ModalService,
+    private autService: AuthService) { }
 
   ngOnInit() {
 

@@ -65,6 +65,13 @@ export class AuthService {
     return false;
   }
 
+  tieneRole(role: string): boolean {
+    if(this.usuario.roles.includes(role)){
+      return true;
+    }
+    return false;
+  }
+
   login(usuario: Usuario): Observable<any> {
 
     const urlEndPoint = environment.urlService + 'oauth/token';
