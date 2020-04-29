@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand navbar navbar-dark  bg-info">
   <a class="navbar-brand" > {{ title }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,20 +11,18 @@
         <a class="nav-link" [routerLink]="['/clientes']">Clientes</a>
       </li>
     </ul>
-    <ul class="navbar-nav navbar-right">
+    <ul class="navbar-nav navbar-right  bg-info">
       <li>
         <a *ngIf="!authService.autenticado()" [routerLink]="['/login']" class="btn btn-outline-primary">Sign In</a>
       </li>
-      <li class="dropdown" *ngIf="authService.autenticado()">
-        <a class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+      <li class="dropdown btn-group" *ngIf="authService.autenticado()">              
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true">
           {{authService.usuario.username}}
-        </a>
-        <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <button (click)="logout()" class="dropdown-item" type="submit">Sign Out</button>
-        </div>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">          
+          <a (click)="logout()" class="dropdown-item" type="submit">Sign Out</a>
+        </div>      
       </li>
-
     </ul>
   </div>
 </nav>

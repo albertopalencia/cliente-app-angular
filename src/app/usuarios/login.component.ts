@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  titulo: string = 'Por favor Sign in!';
+  titulo: string = 'Please Sign in!';
   usuario: Usuario
 
   constructor(private authService: AuthService, private router: Router) {

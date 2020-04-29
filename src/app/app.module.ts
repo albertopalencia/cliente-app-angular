@@ -24,6 +24,7 @@ import { RoleGuard } from './usuarios/guards/role.guard';
 import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 
+
 registerLocaleData(localeES, 'es');
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ const routes: Routes = [
     FormComponent,
     PaginatorComponent,
     DetalleComponent,
-    LoginComponent
+    LoginComponent 
   ],
   imports: [
     BrowserModule,
