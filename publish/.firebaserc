@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "cliente-app-angular",
+    "cliente-app": "cliente-app-angular",
+    "clientes-app": "cliente-app-angular"
+  }
+}

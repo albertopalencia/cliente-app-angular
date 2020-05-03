@@ -6,7 +6,9 @@ import { ClienteService } from '../cliente.service';
 import swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
 import { AuthService } from '../../usuarios/auth.service';
-import { environment } from '../../../environments/environment';
+import { URL_BACKEND } from '../../config/config';
+
+
 @Component({
   selector: 'detalle-cliente',
   templateUrl: './detalle.component.html',
@@ -18,10 +20,12 @@ export class DetalleComponent implements OnInit {
   titulo: string = "Detalle del cliente";
   private fotoSeleccionada: File;
   progreso: number = 0;
-  urlFoto: string = environment.urlService;
+  public URL_FOTO = URL_BACKEND;
+  
 
-  constructor(private clienteService: ClienteService, private modalService: ModalService,
-    private authService: AuthService) { }
+  constructor(private clienteService: ClienteService, 
+    public modalService: ModalService,
+    public authService: AuthService) { }
 
   ngOnInit() { }
 

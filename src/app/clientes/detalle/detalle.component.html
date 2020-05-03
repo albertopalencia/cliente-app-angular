@@ -43,16 +43,17 @@
               </div>
 
               <div class="col-sm">
-                <img *ngIf="cliente?.foto" src="{{urlFoto}}api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}"
+                <img *ngIf="cliente?.foto" src="{{URL_FOTO}}api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}"
                   class="img-thumbnail rounded">
               </div>
             </div>
 
             <div class="row">
+              <h4 class="text-muted">Facturas</h4>
               <div *ngIf="cliente?.facturas.length == 0" class="alert alert-info my-4">                   
                 No hay facturas asignadas para el cliente {{cliente.nombre}} {{cliente.apellido}}
               </div>
-              <h4 class="text-muted">Facturas</h4>
+            
               <table  *ngIf="cliente.facturas.length > 0" class="table table-bordered table-striped my-4">
                 <thead>
                   <tr>
@@ -67,7 +68,7 @@
                     <td>{{factura.id}}</td>
                     <td>{{factura.descripcion}}</td>
                     <td>{{factura.createAt}}</td>
-                    <td>{{factura.total}}</td>
+                    <td>{{factura.total | currency}}</td>
                   </tr>                  
                 </tbody>
               </table>

@@ -4,7 +4,7 @@ import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
-import { environment } from '../../environments/environment.prod';
+import { URL_BACKEND } from '../config/config';
 import { AuthService } from '../usuarios/auth.service';
 
 @Component({
@@ -16,11 +16,12 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[];
   paginador: any;
   clienteSeleccionado: Cliente;
-  rutaServicio: string  = environment.urlService;
+  rutaServicio: string  = URL_BACKEND;
 
   constructor(private clienteService: ClienteService,
-    private activatedRoute: ActivatedRoute, private modalService : ModalService,
-    private autService: AuthService) { }
+    private activatedRoute: ActivatedRoute, 
+    public modalService : ModalService,
+    public autService: AuthService) { }
 
   ngOnInit() {
 

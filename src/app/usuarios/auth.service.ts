@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from './usuario';
-import { environment } from '../../environments/environment';
+import { URL_BACKEND } from '../config/config';
+
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +75,7 @@ export class AuthService {
 
   login(usuario: Usuario): Observable<any> {
 
-    const urlEndPoint = environment.urlService + 'oauth/token';
+    const urlEndPoint = URL_BACKEND + 'oauth/token';
     const credenciales = btoa('angularapp'+ ':' + '12345');
     const httpHeaders = new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded',

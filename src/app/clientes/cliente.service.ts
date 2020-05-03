@@ -7,12 +7,12 @@ import { Observable, throwError } from 'rxjs';
 
 
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
+import { URL_BACKEND } from '../config/config';
 
 
 @Injectable()
 export class ClienteService {
-  private urlEndPoint: string = environment.urlService + 'api/clientes';
+  private urlEndPoint: string = URL_BACKEND + 'api/clientes';
 
 
   constructor(private http: HttpClient, private router: Router) { }
