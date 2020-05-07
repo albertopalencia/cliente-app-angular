@@ -18,18 +18,19 @@
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>Foto</th>
+            <th *ngIf="autService.tieneRole('ROLE_USER')">Foto</th>
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Email</th>
             <th>Fecha</th>
             <th *ngIf="autService.tieneRole('ROLE_ADMIN')"></th>
             <th *ngIf="autService.tieneRole('ROLE_ADMIN')"></th>
+            <th *ngIf="autService.tieneRole('ROLE_ADMIN')"></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let cliente of clientes">
-            <td>
+            <td *ngIf="autService.tieneRole('ROLE_USER')">
               <img src="{{rutaServicio}}api/uploads/img/{{cliente.foto}}" *ngIf="cliente?.foto"
                 (click)="abrirModal(cliente)" alt="{{cliente.foto}}" class="img-thumbnail rounded"
                 style="cursor: pointer; width: 40px;">
@@ -41,6 +42,12 @@
             <td>{{ cliente.apellido }}</td>
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.createAt | date:"EEEE dd, MMMM yyyy"}}</td>
+            <td *ngIf="autService.tieneRole('ROLE_ADMIN')">
+              <button type="button" name="crearfactura" [routerLink]="['/facturas/form', cliente.id]" title="crear factura"
+                class="btn btn-info btn-sm">
+                <i class="fa fa-plus"></i>
+              </button>
+            </td>
             <td *ngIf="autService.tieneRole('ROLE_ADMIN')">
               <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]" title="editar"
                 class="btn btn-info btn-sm">

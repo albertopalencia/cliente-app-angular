@@ -18,8 +18,11 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError(e=> {
 
             if (e.status == 401) {
-
+                
                 if (this.authService.autenticado()) {
+                    if(e.error.error == "invalid_token") {
+                        swal('', `Hola ${this.authService.usuario.username} su sessión ha expirado`, 'warning');
+                    }                   
                     this.authService.logout();
                 }
 

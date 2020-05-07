@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { URL_BACKEND } from '../config/config';
 
 
+
 @Injectable()
 export class ClienteService {
   private urlEndPoint: string = URL_BACKEND + 'api/clientes';
@@ -55,6 +56,7 @@ export class ClienteService {
   }  
 
   update(cliente: Cliente): Observable<any> {
+
     return this.http.put<any>(`${this.urlEndPoint}/${cliente.id}`, cliente).pipe(
       catchError(e => {
         if (e.status == 400) {

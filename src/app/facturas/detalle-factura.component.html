@@ -1,0 +1,56 @@
+<div class="card bg-light" *ngIf="factura">
+  <div class="card-header"> {{titulo}}:  {{ factura.descripcion }}</div>
+    <div class="card-body">
+      <h4 class="card-title">
+        <a [routerLink]="['/clientes']" class="btn btn-light btn-xs">&laquo; volver</a>
+      </h4>
+
+      <ul class="list-group my-2">
+        <li class="list-group-item list-group-item-info text-muted"><strong>Datos del cliente</strong></li>
+        <li class="list-group-item">{{ factura.cliente.nombre }}</li>
+        <li class="list-group-item"> {{ factura.cliente.apellido }}</li>
+
+      </ul>
+
+      <ul class="list-group my-2">
+        <li class="list-group-item list-group-item-info text-muted"><strong>Datos de la factura</strong> </li>
+        <li class="list-group-item"><b>Folio:</b> {{ factura.id }}</li>
+        <li class="list-group-item"><b>Descripci&oacute;n:</b> {{ factura.descripcion }}</li>   
+        <li class="list-group-item"><b>Fecha:</b> {{ factura.createAt }}</li>   
+      </ul>
+
+      <table class="table table-striped table-hover table-bordered my-3">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of factura.items">
+            <td>{{ item.producto.nombre }}</td>
+            <td>{{ item.producto.precio }}</td>
+            <td>{{ item.cantidad }} </td>
+            <td>{{ item.importe | currency:'COP':'symbol'  }}</td>           
+          </tr>
+        </tbody>
+      </table>
+      <h5 class="float-right">
+        <span>Total</span>: <span class="badge badge-secondary">{{ factura.total | currency:'COP':'symbol' }}</span>
+      </h5>
+
+      <div class="card border-light mb-4" style="max-width: 250px;">
+        <div class="card card-header">
+          Observaciones
+        </div>
+        <div class="card card-body">
+          <p *ngIf="!factura.observacion">No tiene observaciones</p>
+          <p *ngIf="factura.observacion"> {{ factura.observacion }} </p>
+        </div>
+      </div>
+    </div>
+  
+</div>
